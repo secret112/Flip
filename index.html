@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flip Card</title>
+    <!--Google Fonts and Icons-->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Round|Material+Icons+Sharp|Material+Icons+Two+Tone"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Foldit:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100vh;
+      }
+      .center {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .book {
+        width: 400px;
+        height: 300px;
+        position: relative;
+      }
+      .pages {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .page {
+        width: 380px;
+        height: 270px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: 7mm;
+        margin: 0 6px;
+        transform-style: preserve-3d;
+        transform-origin: left;
+        transition: 0.25s;
+background: #E62765;
+background: linear-gradient(135deg, #E62765, #34ABBF);
+
+
+      }
+      .page-side {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding: 20px 30px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        font-family: poppins;
+        border-radius: 7mm;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: hidden;
+      }
+      .page-head {
+        width: 100%;
+      }
+      .page-title {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 30px;
+        font-weight: 500;
+      }
+      .page-subtitle {
+        font-size: 12px;
+        font-weight: 300;
+      }
+      .page-content {
+        flex-grow: 1;
+        font-size: 14px;
+        display: flex;
+        align-items: flex-end;
+        font-family:monospace;
+      }
+      .page-footer {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      .pg-no {
+        width: 14px;
+        padding: 0 15px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: rgb(40, 40, 40);
+        background-color: #D9AFD9;
+background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+
+        border-radius: 3mm;
+      }
+      .front {
+        /* background: rgb(255, 228, 130); */
+        background-image: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%);
+        color: rgb(40, 40, 40);
+        padding-left: 40px;
+      }
+      .back {
+        background: rgb(40, 40, 40);
+        color: white;
+        padding-right: 40px;
+        transform: rotateY(180deg);
+      }
+      .beads {
+        position: absolute;
+        top: 0;
+        left: -12px;
+        height: 270px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: column;
+        z-index: 9999;
+      }
+      .bead {
+        width: 36px;
+        height: 12px;
+        background-color: #0093E9;
+background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+        border-radius: 5mm;
+        z-index: 9999;
+        box-shadow: inset 1px 2px 0 0 rgba(0, 0, 0, 0.15),
+          inset 1px 3px 1px 0 rgba(0, 0, 0, 0.1);
+      }
+      .controls {
+        width: 350px;
+        height: fit-content;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .controls button {
+        background-color: #4158D0;
+background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+
+        width: 40px;
+        height: 40px;
+        border: 0.4mm solid rgb(40, 40, 40);
+        border-radius: 50%;
+        outline: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <div class="book">
+        <div class="pages">
+          <div class="beads">
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+            <div class="bead"></div>
+          </div>
+
+          <div class="page active">
+            <div class="page-side front">
+              <div class="page-head">
+                <div class="page-title">
+                  Happy Birthday
+                  <span class="material-icons-outlined">cake</span>
+                </div>
+                <div class="page-subtitle">✨</div>
+              </div>
+              <div class="page-content">
+                Happy Birthday to...!
+                Even though, you’re always specal. On this special day, be happy with him with a lots of love, affection & much more. I hope your day is as bright and beautiful, filled with laughter, love, and everything. May this new year of your life bring you joy, adventure, and all the happiness your heart can hold. Sending you all wishes from afar.
+              </div>
+              <div class="page-footer">
+                <span>26 August</span>
+                <span class="pg-no">1</span>
+              </div>
+            </div>
+
+            <div class="page-side back">
+              <div class="page-head">
+                <div class="page-title">
+                  Memories to Cherish
+                  <span class="material-icons-outlined">favorite</span>
+                </div>
+                <div class="page-subtitle">✨</div>
+              </div>
+              <div class="page-content">
+                I'll never forget that time, that day specially. 😊<br>
+                    তুমি আঁচল পেতে রাখো না<br>
+                    আমি আসছি চলে,<br>
+                    তুমি চোখ বুজো না, বুজো না<br>
+                    আমি এলাম বলে,<br>
+                    এখনো সময় অনেক বাকি।
+              </div>
+              <div class="page-footer">
+                <span>February 2024</span>
+                <span class="pg-no">2</span>
+              </div>
+            </div>
+          </div>
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-head">
+                <div class="page-title">
+                  There's a Special Someone
+                  <span class="material-icons-outlined">people</span>
+                </div>
+                <div class="page-subtitle">✨</div>
+              </div>
+              <div class="page-content">
+              I hope he knows how lucky he is to have you in his life! Just kidding, sort of. Seriously though, I'm happy if you're happy! <br>
+                উঠোন পেরিয়ে কল পার হয়ে<br>
+                    জামার হাতায় কপাল ভিজিয়ে<br>
+                    কোনোদিন ভালোবাসার স্পর্শ রাখো নি<br>
+                    কোনো স্পর্শ রাখো নি😊
+              </div>
+              <div class="page-footer">
+                <span>♾️</span>
+                <span class="pg-no">3</span>
+              </div>
+            </div>
+            <div class="page-side back">
+              <div class="page-head">
+                <div class="page-title">
+                You Shine Bright
+                <span class="material-icons-outlined">girl</span>                
+                </div>
+                <div class="page-subtitle">✨</div>
+              </div>
+              <div class="page-content">
+                Despite the distance, your voice, that eyes, haha... Keep shining your light - it makes a difference in the lives of those around you.☺️ <br>
+                আমাদের গল্পগুলো<br>
+                অল্প সময় ঘর পাতালো<br>
+                তারপর পথ হারালো<br>
+                তোমায় আমায় নিয়ে
+
+              </div>
+              <div class="page-footer">
+                <span>♾️</span>
+                <span class="pg-no">4</span>
+              </div>
+            </div>
+          </div>
+          <div class="page">
+            <div class="page-side front">
+              <div class="page-head">
+                <div class="page-title">
+                  Wishing You Years of Love
+                  <span class="material-icons-outlined">favorite</span>
+                </div>
+                <div class="page-subtitle">✨</div>
+              </div>
+              <div class="page-content">
+                On your birthday and always, wish you happiness & love that surrounds you.🥰 <br>
+                আমি চেনা গলি, চেনা রাজপথ <br>
+                চেনা আলো দিয়ে মোড়া নগরের থেকে এসেছি। <br>
+                তোমার অচেনা দালানে যত পাখি আছে <br>
+                বলেছে আমাকে যা বলার আছে, <br>
+                চুপ করে আমি সেই সব কথা শুনেছি
+              </div>
+              <div class="page-footer">
+                <span>♾️</span>
+                <span class="pg-no">5</span>
+              </div>
+            </div>
+            <div class="page-side back">
+              <div class="page-head">
+                <div class="page-title">
+                  Missing You More Than Words Can Say
+                  <span class="material-icons-outlined">sentiment_dissatisfied</span>
+                </div>
+                <div class="page-subtitle">✨</div>
+              </div>
+              <div class="page-content">
+                I miss that everythong. I know it's not the right to tell but... yes it is, I do. But always be happy.😃 <br>
+                আমাদের গল্পগুলোর লাগাম ছাড়া স্বপ্ন ছিল<br>
+                ভোরে তার চকচকে রোদ, বৃষ্টি ছিল রাতে <br>
+                একখানা জাহাজ বাড়ি, সেখান থেকেই ঝর্ণা শুরু <br>
+                কথা ছিল দুজন মিলেই স্বপ্ন দেখব তাতে
+              </div>
+              <div class="page-footer">
+                <span>♾️</span>
+                <span class="pg-no">6</span>
+              </div>
+            </div>
+          </div>
+          <div class="page"></div>
+        </div>
+      </div>
+      <div class="controls">
+        <button type="button" class="btn" onclick="previous()">
+          <span class="material-icons-outlined">arrow_back</span>
+        </button>
+        <button type="button" class="btn" onclick="next()">
+          <span class="material-icons-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+    <script>
+      function setIndex() {
+        let pages = document.querySelectorAll(".page");
+        for (var i = 0; i < pages.length; i++) {
+          pages[i].style.zIndex = pages.length - i;
+        }
+      }
+
+      setIndex();
+
+      function previous() {
+        let active = document.querySelector(".active");
+        let prevSib = active.previousElementSibling;
+        active.className = "page";
+        prevSib.className = "page active";
+        setIndex();
+        prevSib.style.transform = "rotateY(0deg)";
+        let prevSib2 = prevSib.previousElementSibling;
+        if (prevSib2 && prevSib2.className == "page") {
+          prevSib2.style.zIndex = "9998";
+        }
+      }
+
+      function next() {
+        let active = document.querySelector(".active");
+        let nextSib = active.nextElementSibling;
+        active.style.transform = "rotateY(180deg)";
+        active.className = "page";
+        setIndex();
+        active.style.zIndex = "9998";
+        if (nextSib) {
+          nextSib.className = "page active";
+        }
+      }
+    </script>
+  </body>
+</html>
